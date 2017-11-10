@@ -1,0 +1,44 @@
+<html>
+	<head>
+		<title>QBIS Technical Assessment - JQuery/Telerik Kendo UI</title>
+		<link rel="stylesheet" href="src/css/reset.css"/>
+		<link rel="stylesheet" href="src/css/grid.css"/>
+		<link rel="stylesheet" href="https://kendo.cdn.telerik.com/2017.3.1026/styles/kendo.common.min.css"/>
+		<link rel="stylesheet" href="https://kendo.cdn.telerik.com/2017.3.1026/styles/kendo.rtl.min.css"/>
+		<link rel="stylesheet" href="https://kendo.cdn.telerik.com/2017.3.1026/styles/kendo.silver.min.css"/>
+		<link rel="stylesheet" href="https://kendo.cdn.telerik.com/2017.3.1026/styles/kendo.mobile.all.min.css"/>
+
+		<script src="https://kendo.cdn.telerik.com/2017.3.1026/js/jquery.min.js"></script>
+		<script src="https://kendo.cdn.telerik.com/2017.3.1026/js/kendo.all.min.js"></script>
+		<script src="src/js/grid.js"></script>
+    </head>
+    <body>
+		<ul>
+			<li><label>Access Token</label></li>
+			<li><input id="access-token" type="text"/></li>
+		</ul>
+		<table>
+			<tr>
+				<th>Bus Station</th>
+				<th>Date & Time</th>
+				<th></th>
+			</tr>
+			<tr>
+				<td><div id="qlo-dropdown" class="dropdown-style"></div></td>
+				<td><input id="qlo-dateTime" class="datetime-style" /></td>
+				<td><button id="qlo-button" class="button-style">Search</button></td>
+			</tr>
+		</table>
+		
+        <div id="qlo-grid"></div>
+    </body>
+    <footer>
+        <p>
+            <label>Copyright 2017 - QLogic AB</label>
+        <p>
+    </footer>
+</html>
+<script>
+	$(document).ready(function() { new Grid();});
+</script>
+				
