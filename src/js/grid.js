@@ -5,8 +5,8 @@ function Grid(){
 	var $button = $("#qlo-button");
 	var $dateTime = $("#qlo-dateTime");
 	var $dropdown = $("#qlo-dropdown");
-	var auth02 = "Bearer ";
-	var remoteDATAURL = "https://api.vasttrafik.se/bin/rest.exe/v2/departureBoard";
+	var vAPI = new VasttrafikAPI();
+	
 	var locationData = [
 		{stopName:"Norra Gubberogatan", id:"9021014005040000"}, 
 		{stopName:"Centralstationen", id:"9021014001950000"},
@@ -47,16 +47,14 @@ function Grid(){
 		var locationId = Number($dropdown.data("kendoDropDownList").value());
 		var dateValue =  formatDate($dateTime.data("kendoDateTimePicker").value());
 		var timeValue =  formatTime($dateTime.data("kendoDateTimePicker").value());
-		var requestData = { 
+		var params = { 
 			date: dateValue, 
 			id: locationId, 
 			time: timeValue,
-			format: "json",
 		};
 		
 		if (locationId > 0){
-			auth02 = auth02 + $aToken.val();
-			getData(requestData);
+			vAPI.getDepartureBoard(params, bindGrid);
 		}
 		else{
 			kendo.alert("Please select a location!");
@@ -84,30 +82,10 @@ function Grid(){
 		return [hour, minutes].join(':');
 	}
 	
-	var getData = function (requestData){
-		$.ajax({
-            type: "GET",
-            url: remoteDATAURL,
-			beforeSend: function (xhr) {
-				xhr.setRequestHeader("Authorization", auth02);	
-			},
-			data: requestData,
-			dataType: "json",
-            asyc: true,
-            success: function (result){
-				bindGrid(result);
-			},
-            error: function (xhr, ajaxOptions, thrownError) {
-				kendo.alert(xhr.status + " " + thrownError);
-			}
-        });	
-	}
-	
 	var bindGrid = function (data){
-		// AJAX call with returning JSON object
 		$grid.kendoGrid({
 			dataSource: new kendo.data.DataSource({
-				data: data["DepartureBoard"].Departure,
+				data: data,
 			})
 		}).data("kendoGrid");
 	};
