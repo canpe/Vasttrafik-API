@@ -11,6 +11,7 @@ function Grid(){
 	var locationData = [
 		{stopName:"Norra Gubberogatan", id:"9021014005040000"}, 
 		{stopName:"Centralstationen", id:"9021014001950000"},
+		{stopName:"Wieselgrensgatan", id:"9021014007420000"},
 	];
 	
 	var init = function (){
