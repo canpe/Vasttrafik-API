@@ -6,6 +6,7 @@ function Grid(){
 	var $dateTime = $("#qlo-dateTime");
 	var $dropdown = $("#qlo-dropdown");
 	var vAPI = new VasttrafikAPI();
+	var gridColumns = new Columns();
 	
 	var locationData = [
 		{stopName:"Norra Gubberogatan", id:"9021014005040000"}, 
@@ -85,8 +86,9 @@ function Grid(){
 	var bindGrid = function (data){
 		$grid.kendoGrid({
 			dataSource: new kendo.data.DataSource({
-				data: data,
-			})
+				data: data,	
+			}),
+			columns: gridColumns.getDepartureBoardColumns(),
 		}).data("kendoGrid");
 	};
 	

@@ -56,3 +56,24 @@ span.datetime-style{
 	padding: 0.5em 0em;
     display: inline-block;
 }
+
+.k-grid .k-icon-custom {
+	display: inline-block;
+	min-width: 25px;
+	text-align: center;
+	padding: 0.3em;
+    border-radius: 5px;
+}
+
+.k-grid .icon-bus{
+	color: #004b85;
+}
+
+.k-grid .icon-train{
+	color: #00b6f1;
+}
+
+.k-grid .icon-wheelchair{
+	color: #333;
+	margin-left: 1em;
+}
