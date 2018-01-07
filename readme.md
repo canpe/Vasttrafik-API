@@ -1,3 +1,1 @@
-BEFORE START THE ASSIGNMENT PLEASE READ THIS DOCUMENT CAREFULLY!!!
-
-TODO: Document will be written later!
+Trying out Gothenburg city transport API (OAuth 2.0)
