@@ -4,32 +4,57 @@ function Grid(){
     var $grid = $("#qlo-grid");
 	var $button = $("#qlo-button");
 	var $dateTime = $("#qlo-dateTime");
-	var $dropdown = $("#qlo-dropdown");
+	var $searchText = $("#qlo-input");
 	var vAPI = new VasttrafikAPI();
 	var gridColumns = new Columns();
-	
-	var locationData = [
-		{stopName:"Norra Gubberogatan", id:"9021014005040000"}, 
-		{stopName:"Centralstationen", id:"9021014001950000"},
-		{stopName:"Wieselgrensgatan", id:"9021014007420000"},
-	];
+	var locationId = 0;
 	
 	var init = function (){
-		bindDropdown();
+		bindAutoComplete();
 		bindDateTime();
 		bindButton();
 	};
-	
-	var bindDropdown = function (){
-		$dropdown.kendoDropDownList({
-            dataTextField: "stopName",
-            dataValueField: "id",
-			optionLabel: "Please Select!",
-            dataSource: locationData,
-            index: 0,
+
+	var bindAutoComplete = function(){
+		$searchText.kendoAutoComplete({
+			minLength: 2,
+			enforceMinLength: true,
+			placeholder: "Enter station name...",
+			dataTextField: "name",
+			dataSource: getLocationDataSource(),
+			template: getLocationDataItemTemplate,
+			//close: function(e) { e.preventDefault(); },
+			select: function(e) {
+				locationId = e.dataItem.id || 0;
+			},
 		});
 	};
 	
+	var getLocationDataSource = function() {
+		return new kendo.data.DataSource({
+			serverFiltering: true,
+			transport: {
+				read: function(options) {
+					var params = { input: options.data.filter.filters[0].value };
+					vAPI.getLocationsByName(params, options.success);
+				},
+			},
+			schema: {
+				data: function(result) {
+				  return $.merge(result.stops, result.cordinates); 
+				},  
+			},
+		}); 
+	};
+
+	var getLocationDataItemTemplate = function(dataItem){
+		var typeElement = "";
+        if (dataItem.type == "ADR") typeElement += "<span class='icon-home2'></span>";
+		else if (dataItem.type == "POI") typeElement += "<span class='icon-city'></span>";
+		else typeElement += "<span class='icon-pushpin2'></span>";
+		return typeElement + "<span>" + dataItem.name + "</span>"; 
+	};
+
 	var bindDateTime = function(){
 		$dateTime.kendoDateTimePicker({          
 			value: new Date(),
@@ -46,7 +71,6 @@ function Grid(){
 	};
 	
 	var onButtonClick = function (){
-		var locationId = Number($dropdown.data("kendoDropDownList").value());
 		var dateValue =  formatDate($dateTime.data("kendoDateTimePicker").value());
 		var timeValue =  formatTime($dateTime.data("kendoDateTimePicker").value());
 		var params = { 

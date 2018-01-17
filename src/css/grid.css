@@ -34,7 +34,7 @@ table th {
 	padding-bottom: 5px;
 }
 
-.dropdown-style{
+span.input-style{
 	min-width: 20em;
 	margin-right: 1em;
 }
@@ -76,4 +76,9 @@ span.datetime-style{
 .k-grid .icon-wheelchair{
 	color: #333;
 	margin-left: 1em;
+}
+
+.k-list-container .k-item span{
+	vertical-align: middle;
+	margin-right: 0.5em;
 }

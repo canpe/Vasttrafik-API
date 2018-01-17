@@ -5,6 +5,19 @@ function VasttrafikAPI (){
     var oAuth02 = "Bearer ";
 	var baseURL = "https://api.vasttrafik.se/bin/rest.exe/v2";
 
+    this.getLocationsByName = function (params, callback){
+        var url = baseURL + "/location.name";
+        sendRequest(url, params, function(data){
+            var data = {
+                cordinates: toArray(data["LocationList"].CoordLocation),
+                stops: toArray(data["LocationList"].StopLocation),
+            };
+            if (callback !== undefined){
+                callback(data);
+            }
+        });
+    };
+
     this.getDepartureBoard = function (params, callback){
         var url = baseURL + "/departureBoard";
         sendRequest(url, params, function(data){
@@ -59,6 +72,13 @@ function VasttrafikAPI (){
             }
         });
     }
+
+    var toArray = function(obj){
+        if (obj !== undefined){
+            return (obj instanceof Array) ? obj : new Array(obj);
+        }
+        return new Array()
+    };
 
     var init = function(){
         getAccessToken();

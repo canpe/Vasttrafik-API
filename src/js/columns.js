@@ -68,7 +68,10 @@ function Columns(){
     var getTypeElement = function(dataItem){
         var typeElement = "";
         if (dataItem.type == "BUS") typeElement += "<span class='icon-bus'></span>";
-        if (dataItem.type == "TRAM") typeElement += "<span class='icon-train'></span>";
+        if (dataItem.type == "TRAM") typeElement += "<span class='icon-train2'></span>";
+        if (dataItem.type == "LDT" || dataItem.type == "REG") typeElement += "<span class='icon-train'></span>";
+        if (dataItem.type == "BOAT") typeElement += "<span class='icon-ship'></span>";
+        if (dataItem.type == "TAXI") typeElement += "<span class='icon-car2'></span>";
         if (dataItem.accessibility == "wheelChair") typeElement += "<span class='icon-wheelchair'></span>";
         return typeElement;
     };

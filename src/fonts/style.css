@@ -1,10 +1,10 @@
 @font-face {
   font-family: 'icomoon';
-  src:  url('fonts/icomoon.eot?6jhfpu');
-  src:  url('fonts/icomoon.eot?6jhfpu#iefix') format('embedded-opentype'),
-    url('fonts/icomoon.ttf?6jhfpu') format('truetype'),
-    url('fonts/icomoon.woff?6jhfpu') format('woff'),
-    url('fonts/icomoon.svg?6jhfpu#icomoon') format('svg');
+  src:  url('fonts/icomoon.eot?pe2lpj');
+  src:  url('fonts/icomoon.eot?pe2lpj#iefix') format('embedded-opentype'),
+    url('fonts/icomoon.ttf?pe2lpj') format('truetype'),
+    url('fonts/icomoon.woff?pe2lpj') format('woff'),
+    url('fonts/icomoon.svg?pe2lpj#icomoon') format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -24,12 +24,30 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.icon-train:before {
+  content: "\e903";
+}
+.icon-home2:before {
+  content: "\e904";
+}
+.icon-city:before {
+  content: "\e90a";
+}
+.icon-pushpin2:before {
+  content: "\ea37";
+}
+.icon-car2:before {
+  content: "\ec0c";
+}
+.icon-ship:before {
+  content: "\ec14";
+}
 .icon-wheelchair:before {
   content: "\e902";
 }
 .icon-bus:before {
   content: "\e900";
 }
-.icon-train:before {
+.icon-train2:before {
   content: "\e901";
 }
